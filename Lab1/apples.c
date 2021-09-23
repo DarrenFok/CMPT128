@@ -1,3 +1,12 @@
+/*
+ * Filename: apples.c
+ * 
+ * Description: Takes inputted amount of apples and amount of apples in each bag and outputs how many bags and leftover apples there would be.
+ * 
+ * Author: Darren Fok
+ * Date: September 23rd, 2021
+ */
+
 #include <stdio.h> 
 #include <math.h>
 
