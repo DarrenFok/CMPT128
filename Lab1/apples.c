@@ -14,13 +14,14 @@ int main (void) {
     //Fields
     int numApples = 0; //Total number of apples
     int inEachBag = 0; //Amount of apples in each bag
-    int bagsProduced = 0;
-    int leftOver = 0;
+    int bagsProduced = 0; //Number of bags
+    int leftOver = 0; //Number of leftovers
     int result = 0; 
 
     //Prompt user to input amount of apples then amount in each bag
     printf("Please, enter the number of apples available and the numbers of apples each bag holds: \n");
 
+    //Allow for user input and loop process as long as user input is not ctrl+d
     while ((result = scanf("%d %d", &numApples, &inEachBag)) != EOF){
         //Print number of apples and amount in each bag to user
         printf("Number of apples available => %d, number of apples each bag holds => %d.\n", numApples, inEachBag);
@@ -34,9 +35,11 @@ int main (void) {
         //Print results
         printf("Number of bags produced => %d, number of apples left over => %d.\n", bagsProduced, leftOver);
 
+        //Prompt user to input amount of apples then amount in each bag (included in loop)
         printf("Please, enter the number of apples available and the numbers of apples each bag holds: \n");
     }
 
+    //Print "Done."
     printf("Done.\n");
     return 0; 
 }
