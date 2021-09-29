@@ -41,6 +41,7 @@ int main (void) {
             //Print results
             printf("Number of bags produced => %d, number of apples left over => %d.", bagsProduced, leftOver);
         }
+        //Prompt user to input amount of apples then amount in each bag
         printf("\nPlease, enter the number of apples available and the number of apples each bag holds: ");
     
     }
