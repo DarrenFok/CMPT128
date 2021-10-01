@@ -1,3 +1,12 @@
+/*
+ * Filename: reverse.c
+ * 
+ * Description: Takes inputted sequence of 10 numbers, prints that sequence as an array, reverses it, and then prints out the reversed array.
+ * 
+ * Author: Darren Fok
+ * Date: September 30th, 2021
+ */
+
 #include <stdio.h>
 
 int main ( void ){
