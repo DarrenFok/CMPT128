@@ -10,7 +10,8 @@
 #include <stdio.h>
 
 int main ( void ){
-    int intArray[10] = {};
+    const unsigned int arraySize = 10;
+    int intArray[arraySize];
     int loop;
     int temp; //will use this to swap numbers
     
@@ -19,19 +20,19 @@ int main ( void ){
     printf("Please, enter 10 integers and then press Enter: ");
     
     //Allow user to input
-    for(loop = 0; loop < 10; loop++){
+    for(loop = 0; loop < arraySize; loop++){
         scanf("%d", &intArray[loop]);
     }
 
     //Print out array that user has inputted
     printf("Content of array before reversing: ");
-    for(loop = 0; loop < 10; loop++){
+    for(loop = 0; loop < arraySize; loop++){
         printf("%d ", intArray[loop]);
     }
 
     //Reverse array
     loop = 0;
-    int loopReverse = 9;
+    int loopReverse = arraySize-1;
     while (loop < loopReverse){
         temp = intArray[loop];
         intArray[loop] = intArray[loopReverse];
@@ -43,7 +44,7 @@ int main ( void ){
 
     //Print out reversed array
     printf("\nContent of array after reversing: ");
-    for(loop = 0; loop < 10; loop++){
+    for(loop = 0; loop < arraySize; loop++){
         printf("%d ", intArray[loop]);
     }
     
