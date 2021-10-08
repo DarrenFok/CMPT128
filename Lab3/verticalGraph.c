@@ -13,7 +13,7 @@ int main (void){
     
     const unsigned int ARRAY_SIZE = 80;
     int result = 0; 
-    int array[ARRAY_SIZE] = {};
+    int array[ARRAY_SIZE];
     int max = 0; //stores the maximum height
     int input = 0; 
     int count = 0; //counts how many values are inputted
@@ -70,4 +70,3 @@ int main (void){
     }
     return 0;
 }
-
