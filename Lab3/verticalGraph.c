@@ -1,3 +1,12 @@
+/*
+ * Filename: verticalGraph.c
+ * 
+ * Description: Takes inputted numbers and outputs vertical structures that has its width and column's heights based on the inputs.
+ * 
+ * Author: Darren Fok
+ * Date: October 13th, 2021
+ */
+
 #include <stdio.h>
 
 int main (void){
