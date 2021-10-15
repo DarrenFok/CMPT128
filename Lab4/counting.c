@@ -17,21 +17,36 @@ int main (void){
     unsigned long wordCount = 0; 
     unsigned long lineCount = 0;
     char aChar = 1;
+    int word = 1; //Starts with being non-letter
 
     while (( aChar = getchar() ) != EOF){
         charCount++;
 
-        //If character is a space, indent, end of string, or a newline, and is not a letter, add one to wordCount
-        if((aChar == ' ' || aChar == '\n') && isLetter(aChar) == 0){
-            wordCount++;
-        }
-
         //If character is end of string or newline, it indicates that there is a line, thus we can add one to lineCount
         if(aChar == '\n' || aChar == '\0'){
             lineCount++; 
+            word = 1;
+        }
+
+        //If character is a letter...
+        else if( (isLetter(aChar) == 1) ){
+            //Determine whether it is the first letter ('1' means yes, since it says previous character was not)
+            if(word == 1){ 
+                //Add to word count at beginning of the word
+                wordCount++;
+                //Keep simultaenous letters as 0, until it gets set back to 1 (meaning the word has ended since '1' means not letter)
+                word = 0; 
+            }
+        }
+
+        //If character is anything else, set to 1 so we can signify a new word
+        else{ 
+            word = 1;
         }
     }
     printf("%lu %lu %lu\n", charCount, wordCount, lineCount);
+
+    return 0;
 }
 
 int isLetter(char input){
