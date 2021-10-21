@@ -86,7 +86,9 @@ int main( int argc, char* argv[] )
   draw_image_grey( img_Inverted, imgwidth, imgheight );
 
   // ********************************************************
-  //For this test, don't input hadfield.png so we can test the now-white inverted photo. 
+  //For this test, don't input hadfield.png so we can test the now-white inverted photo since it's not as noticeable. However, with hadfield.png you may see irregular
+  //black dots, meaning that this test has worked. 
+
   draw_startup( (char*)"Window 3", winwidth, winheight);
 
   //Copy of original image
