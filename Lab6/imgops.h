@@ -84,15 +84,3 @@ int locate_color(  const uint8_t array[],
 void invert( uint8_t array[], 
 	     unsigned int cols, 
 	     unsigned int rows );
-
-/*  Defines a region, and sets every pixel within that region to
-	an assigned color
-*/
-void region_set (uint8_t array[],
-				 unsigned int cols,
-				 unsigned int rows,
-				 unsigned int left,
-				 unsigned int top,
-				 unsigned int right,
-				 unsigned int bottom,
-				 uint8_t color);

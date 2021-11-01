@@ -157,9 +157,6 @@ void flip_horizontal( uint8_t array[],
         temp = array[first];
         array[first] = array[second];
         array[second] = temp;
-
-        left++;
-        right--;
       }
       //after each row, reset left and right back to the very left and very right positions.
       left = 0;
@@ -210,3 +207,34 @@ void invert( uint8_t array[],
     }
 	return;
 }
+
+/* sets every pixel within the designated region to a desired color 
+  but if region is empty (i.e. left = right or top = bottom, then image must be unchaged)
+*/
+
+void region_set(uint8_t array[], 
+                unsigned int cols, 
+                unsigned int rows,
+                unsigned int left,
+                unsigned int top,
+                unsigned int right,
+                unsigned int bottom,
+                uint8_t color ) 
+{
+  // your code here
+
+  //checks if an area exists. if left == right or top == bottom, there is no area.
+  if(left == right || top == bottom){
+    printf("Region is defined as empty and has no area. Image unchanged.");
+  }
+
+  else{
+    for(int i = top; i < bottom; i++){
+      for(int j = left; j < right; j++){
+          array[j+i*cols] = color;
+        }
+      }
+    }
+
+  return;
+} 
