@@ -84,3 +84,6 @@ int locate_color(  const uint8_t array[],
 void invert( uint8_t array[], 
 	     unsigned int cols, 
 	     unsigned int rows );
+
+/* change color in a selected region */
+void region_set (const uint8_t array[], unsigned int cols, unsigned int rows, unsigned int left, unsigned int top, unsigned int right, unsigned int bottom, uint8_t color);
