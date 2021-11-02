@@ -229,9 +229,9 @@ void region_set(uint8_t array[],
   }
 
   else{
-    for(int i = top; i < bottom; i++){
-      for(int j = left; j < right; j++){
-          array[j+i*cols] = color;
+    for(int loop1 = top; loop1 < bottom; loop1++){
+      for(int loop2 = left; loop2 < right; loop2++){
+          array[loop1*cols+loop2] = color;
         }
       }
     }
