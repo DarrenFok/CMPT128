@@ -1,15 +1,3 @@
-/*
- * Filename: intarr.c
- *
- * Description: Simple operations on arrays
- *
- * Author: RV
- * Modified by: AL
- *
- * Completed by: Darren Fok
- * Completion Date: November 8th, 2021
- */
-
 #include <stdlib.h> 
 #include <stdlib.h>
 #include <time.h>
@@ -23,14 +11,14 @@
 intarr_t* intarr_create( unsigned int size ){
   
   //Allocate memory on heap for struct
-  intarr_t* *ia = malloc(sizeof(intarr_t));
+  intarr_t *ia = malloc(sizeof(intarr_t));
   if(ia != NULL){
     
     //Set the field 'size'
-    ia -> size = size;
+    ia->size = size;
     
     //Allocate memory on heap for array
-    ia -> data = malloc(size * sizeof(int));
+    ia->data = malloc(size * sizeof(int));
     if(ia -> data == NULL){
       free(ia);
       ia = NULL;
@@ -68,7 +56,7 @@ void intarr_fill_with_random( intarr_t* ia ){
   //If struct is not null..
   if(ia != NULL){
     //initiaize random number generator with current time in seconds
-    srand(time(NULL);
+    srand(time(NULL));
     
     //fill array with random numbers
     for(unsigned int i = 0; i < ia->size; i++){
@@ -127,7 +115,7 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ){
   if(ia != NULL){
     if(i != NULL){
       for(unsigned int loop = 0; loop < ia->size; loop++){
-        if(ia->data[i] == target){
+        if(ia->data[loop] == target){
           *i = loop;
           return INTARR_OK;
         }
@@ -146,10 +134,17 @@ intarr_result_t intarr_sort( intarr_t* ia ){
   //Fields
   int min = 0;
   int minPosition = 0;
-  int temp = 0;cppreference
+  int temp = 0;
+
+  if(ia == NULL){
+    return INTARR_BADARRAY;
+  }
+
+  else{
+    min = ia->data[0];
     //this loop determines the target (or first number)
     for(unsigned int loop = 0; loop < ia->size; loop++){
-      min = ia[loop];
+      min = ia->data[loop];
       //create a loop that follows the first one and is the index of the second number
       for(unsigned int loop2 = loop; loop2 < ia->size; loop2++){
         //if second number is less than the current target...
@@ -161,13 +156,11 @@ intarr_result_t intarr_sort( intarr_t* ia ){
       //swapping two numbers
       temp = ia->data[loop];
       ia->data[loop] = min;
-      ia->data[minpos] = temp;
+      ia->data[minPosition] = temp;
     }
-    return INTARR_OK;
+   return INTARR_OK;
   }
-  return INTARR_BADARRAY;
-}  
-  
+}
 // Resize ia to contain newsize values. 
 // Read: https://en.cppreference.com/w/c/memory/realloc)
 // It says: if newsize is less than the original array size, 
