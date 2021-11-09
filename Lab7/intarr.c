@@ -41,7 +41,11 @@ void intarr_destroy( intarr_t* ia ){
     }
   
     //free heap memory for struct
-    free(ia);
+    free(ia);// Sort ia by value smallest-to-largest, so that data[i] < data[i+1]
+// for all valid i, then return INTARR_OK. Works in-place: contents of
+// ia are sorted on return. If ia is null, return INTARR_BADARRAY.
+// Implement whichever sort algorithms we have seen in our lectures. Up to you!
+intarr_result_t intarr_sort( intarr_t* ia );
     ia = NULL;
   }
   return;
@@ -127,8 +131,66 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ){
 // ia are sorted on return. If ia is null, return INTARR_BADARRAY.
 // Implement whichever sort algorithms we have seen in our lectures. Up to you!
 intarr_result_t intarr_sort( intarr_t* ia ){
-  if(ia != NULL){
+  //Fields
+  int min = 0;
+  int minPosition = 0;
+  int temp = 0;cppreference
+    //this loop determines the target (or first number)
     for(unsigned int loop = 0; loop < ia->size; loop++){
-      
-                          
+      min = ia[loop];
+      //create a loop that follows the first one and is the index of the second number
+      for(unsigned int loop2 = loop; loop2 < ia->size; loop2++){
+        //if second number is less than the current target...
+        if(ia->data[loop2] <= min){
+          min = ia->data[loop];
+          minPosition = loop2; //take note of this position for swapping process later
+        }
+      }
+      //swapping two numbers
+      temp = ia->data[loop];
+      ia->data[loop] = min;
+      ia->data[minpos] = temp;
+    }
+    return INTARR_OK;
+  }
+  return INTARR_BADARRAY;
+}  
   
+// Resize ia to contain newsize values. 
+// Read: https://en.cppreference.com/w/c/memory/realloc)
+// It says: if newsize is less than the original array size, 
+// the end of the array is discarded. 
+// If newsize is greater than the original array size, the values 
+// of the new integers will be undefined. Leave them this way,
+// but make sure your test driver calls 
+// void intarr_fill_with_random( intarr_t* ia ); 
+// right after (if this function is successful) to refill this array.
+// If the allocation is successful, return INTARR_OK, otherwise 
+// return INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
+intarr_result_t intarr_resize( intarr_t* ia, unsigned int newsize ){
+  if(ia != NULL){
+    //if the desired size is less than the current size...
+    if(newsize < ia->size){
+      ia->data = realloc(ia->data, newsize * sizeof(int));
+      ia->size = newsize;
+    }
+
+    //if the desired size is greater than the current size...
+    if(newsize > ia->size){
+      ia->data = realloc(ia->data, newsize * sizeof(int));
+      int oldsize = ia->size;
+      ia->size = newsize;
+      memset(ia->data, 0, (newsize - oldsize) * sizeof(int));
+    }
+
+    //checking if allocation is successful
+    if(ia->data != NULL){
+      return INTARR_OK;
+    }
+
+    else{
+      return INTARR_BADALLOC;
+    }
+  }
+  return INTARR_BADARRAY;
+}
