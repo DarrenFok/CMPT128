@@ -1,7 +1,7 @@
 #include <stdlib.h> 
 #include <stdlib.h>
 #include <time.h>
-
+#include <string.h>
 #include "intarr.h"
 
 // Create a new intarr_t with initial array size "size".
@@ -147,11 +147,10 @@ intarr_result_t intarr_sort( intarr_t* ia ){
       for(unsigned int loop2 = loop; loop2 < ia->size; loop2++){
         //if second number is less than the current target...
         if(ia->data[loop2] <= min){
-          min = ia->data[loop];
+          min = ia->data[loop2];
           minPosition = loop2; //take note of this position for swapping process later
         }
-      }
-      //swapping two numbers
+      }  
       temp = ia->data[loop];
       ia->data[loop] = min;
       ia->data[minPosition] = temp;
@@ -174,7 +173,7 @@ intarr_result_t intarr_sort( intarr_t* ia ){
 // return INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_resize( intarr_t* ia, unsigned int newsize ){
   if(ia != NULL){
-    return INTARR_BADARRAY;
+
     //if the desired size is less than the current size...
     if(newsize < ia->size){
       ia->data = realloc(ia->data, newsize * sizeof(int));
@@ -198,4 +197,5 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newsize ){
       return INTARR_BADALLOC;
     }
   }
+  return INTARR_BADARRAY;
 }
