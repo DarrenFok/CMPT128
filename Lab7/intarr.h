@@ -22,14 +22,6 @@ typedef enum {
   INTARR_NOTFOUND
 } intarr_result_t;
 
-// Find the first occurrence of the target in the array, searching from
-// index 0. If the target is found and i is non-null, set *i to the
-// location index and return INTARR_OK. If target does not occur in
-// the array, leave *i unmodified and return INTARR_NOTFOUND. If ia is
-// null, return INTARR_BADARRAY.
-// Pay close attention to the above description as it indicates which 
-// of the two algorithms (seen in our lectures) you are to implement.
-intarr_result_t intarr_find( intarr_t* ia, int target, int* i );
 // Create a new intarr_t with initial array size "size".
 // If successful (i.e. memory allocation succeeds), returns a pointer
 // to a newly-allocated intarr_t. 
