@@ -9,11 +9,11 @@
 // to a newly-allocated intarr_t. 
 // If unsuccessful, returns a null pointer.
 intarr_t* intarr_create( unsigned int size ){
-  
+
   //Allocate memory on heap for struct
   intarr_t *ia = malloc(sizeof(intarr_t));
   if(ia != NULL){
-    
+  
     //Set the field 'size'
     ia->size = size;
     
@@ -30,22 +30,21 @@ intarr_t* intarr_create( unsigned int size ){
 // Free all memory allocated for ia. 
 // If the pointer is null, do nothing. 
 // If the ia->data is null, do not attempt to free it.
-void intarr_destroy( intarr_t* ia ){
-  //If heap memory is allocated for struct...
+void intarr_destroy( intarr_t* ia ) {
+
+  //If heap memory allocated for struct
   if(ia != NULL){
-    //If heap memory is allocated for array...
-    if(ia -> data != NULL){
-      //free heap memory for array
-      free(ia -> data);
-      ia -> data = NULL;
+
+    // If heap memory allocated for array
+    if(ia->data != NULL){
+
+      //then free
+      free(ia->data);
+      ia->data = NULL;
     }
-  
-    //free heap memory for struct
-    free(ia);// Sort ia by value smallest-to-largest, so that data[i] < data[i+1]
-// for all valid i, then return INTARR_OK. Works in-place: contents of
-// ia are sorted on return. If ia is null, return INTARR_BADARRAY.
-// Implement whichever sort algorithms we have seen in our lectures. Up to you!
-intarr_result_t intarr_sort( intarr_t* ia );
+    
+    //then free
+    free(ia);
     ia = NULL;
   }
   return;
@@ -94,6 +93,7 @@ intarr_result_t intarr_get( const intarr_t* ia, unsigned int index, int* val ){
     return INTARR_BADARRAY;
   }
   
+  //check if index is valid
   if(((index >= 0) && (index < ia->size)) && (val != NULL)){
     *val = ia->data[index];
     return INTARR_OK;
@@ -128,6 +128,8 @@ intarr_result_t intarr_find( intarr_t* ia, int target, int* i ){
   
 // Sort ia by value smallest-to-largest, so that data[i] < data[i+1]
 // for all valid i, then return INTARR_OK. Works in-place: contents of
+// ia are sorted on return. If ia is null, return INT/ Sort ia by value smallest-to-largest, so that data[i] < data[i+1]
+// for all valid i, then return INTARR_OK. Works in-place: contents of
 // ia are sorted on return. If ia is null, return INTARR_BADARRAY.
 // Implement whichever sort algorithms we have seen in our lectures. Up to you!
 intarr_result_t intarr_sort( intarr_t* ia ){
@@ -136,11 +138,7 @@ intarr_result_t intarr_sort( intarr_t* ia ){
   int minPosition = 0;
   int temp = 0;
 
-  if(ia == NULL){
-    return INTARR_BADARRAY;
-  }
-
-  else{
+  if(ia != NULL){
     min = ia->data[0];
     //this loop determines the target (or first number)
     for(unsigned int loop = 0; loop < ia->size; loop++){
@@ -160,7 +158,9 @@ intarr_result_t intarr_sort( intarr_t* ia ){
     }
    return INTARR_OK;
   }
+  return INTARR_BADARRAY;
 }
+
 // Resize ia to contain newsize values. 
 // Read: https://en.cppreference.com/w/c/memory/realloc)
 // It says: if newsize is less than the original array size, 
@@ -174,6 +174,7 @@ intarr_result_t intarr_sort( intarr_t* ia ){
 // return INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
 intarr_result_t intarr_resize( intarr_t* ia, unsigned int newsize ){
   if(ia != NULL){
+    return INTARR_BADARRAY;
     //if the desired size is less than the current size...
     if(newsize < ia->size){
       ia->data = realloc(ia->data, newsize * sizeof(int));
@@ -197,5 +198,4 @@ intarr_result_t intarr_resize( intarr_t* ia, unsigned int newsize ){
       return INTARR_BADALLOC;
     }
   }
-  return INTARR_BADARRAY;
 }
