@@ -1,3 +1,15 @@
+/*
+ * Filename: intarr.c
+ *
+ * Description: Simple operations on arrays
+ *
+ * Author: RV
+ * Modified by: AL
+ *
+ * Completed by: Darren Fok
+ * Completion Date: November 8th, 2021
+ */
+
 #include <stdlib.h> 
 #include <stdlib.h>
 #include <time.h>
