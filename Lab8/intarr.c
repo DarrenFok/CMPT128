@@ -258,10 +258,14 @@ intarr_t* intarr_copy_subarray( intarr_t* ia,
   }
 
   //if everything is valid...
-  if(first <= last && duplicate_subarray != NULL){
+  else{
     //new size of subarray is last-first+1 (e.g. 2-4 size would be 4-2+1 =3)
     int newSize = last - first + 1;
     int dupLoop = 0;
+
+    //update length and allocate memory
+    duplicate_subarray->size = newSize;
+    duplicate_subarray->data = malloc(sizeof(int)*newSize);
 
     //duplicate selected section if ia into the subarray.
     for(unsigned int i = first; i <= last; i++){
@@ -290,7 +294,7 @@ int intarr_save_binary( intarr_t* ia, const char* filename ){
 
   //write contents of array into file
   //fwrite also returns total number of elements successfully written, so if equal to size of array, then it is successful
-  if(fwrite(ia->data, sizeof(int), ia->size, filename) == ia->size){
+  if(fwrite(ia->data, sizeof(int), ia->size, new) == ia->size){
     //close file
     fclose(new);
     return 0;
@@ -308,17 +312,42 @@ int intarr_save_binary( intarr_t* ia, const char* filename ){
 // or NULL on failure.
 // Make sure you validate the parameter before you use it.
 intarr_t* intarr_load_binary( const char* filename ){
+  //make sure filename is valid
   if(filename == NULL){
     return NULL;
   }
 
+  //read the file
   FILE* new = fopen(filename, "r");
-
+  //validate that the fopen worked succesfully
   if(new == NULL){
     return NULL;
   }
 
-  fseek(new, )
+  //set position to end of file
+  fseek(new, 0, SEEK_END);
+  //to tell the size of the file, we use ftell to get current position
+  //divide by sizeof(int) since ftell returns size in bytes and we want number of elements
+  int length = ftell(new)/sizeof(int);
 
+  //set position to beginning of file
+  fseek(new, 0, SEEK_SET);
 
+  //create new array
+  intarr_t* array = malloc(sizeof(intarr_t));
+
+  //set size and allocate memory
+  array->size = length;
+  array->data = malloc(sizeof(int)*array->size);
+
+  //if fread reads the same amount of elements that is supposed to read...
+  if(fread(array->data, sizeof(int), length, new) == array->size){
+    fclose(new);
+    return array;
+  }
+
+  else{
+    fclose(new);
+    return NULL;
+  }
 }
