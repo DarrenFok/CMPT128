@@ -41,6 +41,12 @@ int main( int argc, char* argv[] ) {
   intarr_t* sub = intarr_copy_subarray(test_ia, 2, 5);
   print_intarr(sub);
 
+  printf("Saving test_ia into a file\n");
+  intarr_save_binary(test_ia, "filename");
+
+  printf("Loading saved file as an array\n");
+  intarr_t* load = intarr_load_binary("filename");
+  print_intarr(load);
 
   return 0;
 }
