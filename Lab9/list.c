@@ -37,7 +37,6 @@ list_t* list_create( void ) {
     l->tail = NULL;
     return l;
   }
-
   return NULL;
 }
 
@@ -70,26 +69,16 @@ element_t* element_create( int i ) {
       el->next = NULL;
       return el;
   }
-
-  return NULL;
 }
 
 // Appends a new element containing integer i to the end of the
 // list. Returns 0 on success, else 1.
 int list_append( list_t* list, int i ) {
   //create element with given value i
-  element_t* new = malloc(sizeof(element_t));
-  //check for allocation success 
-  if(new == NULL){
-      return 1;
-  }
-  if(new != NULL){
-      new->val = i;
-      new->next = NULL;
-  }
+  element_t* new = element_create(i);
   
   //if linked list is empty, make this new element the first one  
-  if(list == NULL){
+  if(list->head == NULL){
       list->head = new;
   }
   
@@ -108,15 +97,6 @@ int list_append( list_t* list, int i ) {
 // list. Returns 0 on success, else 1.
 int list_prepend( list_t* list, int i ) {
   element_t* el = element_create( i );
-  //check for allocation success 
-  if ( el == NULL ) {
-      return 1;
-  }
-
-  if(el != NULL){
-      el->val = i;
-      el->next = NULL;
-  }
   
   //check whether linked list is empty, if it is, then make it the first/last (technically)
   if(list->tail == NULL){
