@@ -1,5 +1,5 @@
 /* 
- * Filename: List.c
+ * Filename: list.c
  *
  * Description: Functions that do operations on linked lists
  *
