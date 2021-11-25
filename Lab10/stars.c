@@ -1,18 +1,10 @@
-/******************************************************************************
-
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
 /* 
  *  stars.c
  *
  *  Description: 
  *
- *  Author: 
- *  Date: 
+ *  Author: Darren Fok and Anushka Kulesakara
+ *  Date: December 1st, 2021
  */
 
 #include <stdio.h> 
