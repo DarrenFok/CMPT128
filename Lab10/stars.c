@@ -1,7 +1,7 @@
 /* 
  *  stars.c
  *
- *  Description: 
+ *  Description: Prints rows of stars with size in ascending order until it reaches max, where it prints rows in descending size order
  *
  *  Author: Darren Fok and Anushka Kulesakara
  *  Date: December 1st, 2021
