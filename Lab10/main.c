@@ -45,13 +45,28 @@ int main( int argc, char** argv ) {
   p.y = 4.56;
   p.z = 7.89;
 
+  point_t p2;
+  p2.x = 4.20;
+  p2.y = 3.09;
+  p2.z = 5.18;
+
+
   point_array_t A;
   
+  //Creating array
   point_array_init( &A );
-
   point_array_append( &A, &p );
-
   point_array_print( &A );
+
+  //Adding another point
+  printf("Adding a second point\n");
+  point_array_append(&A, &p2);
+  point_array_print(&A);
+
+  //Removing first point
+  printf("Removing first point\n");
+  point_array_remove(&A, 0);
+  point_array_print(&A);
 
   return 0;
 }
