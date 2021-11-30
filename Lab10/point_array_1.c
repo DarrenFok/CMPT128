@@ -13,8 +13,7 @@
 
 // Safely initalize an empty array structure.
 void point_array_init( point_array_t* pa ){
-    pa->size = 0; 
-    pa->points = malloc(sizeof(point_t));
+    pa->size = 0;
 }
 
 // Resets the array to be empty, freeing any memory allocated if necessary.

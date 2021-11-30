@@ -1,7 +1,7 @@
 /* 
  * Filename: point_array_2.c
  *
- * Description: Functions that do operations on linked lists
+ * Description: Functions that do operations on point lists
  *
  * Completed by: Darren Fok and Anushka Kulasekara
  * Date: November 24th, 2021
@@ -15,7 +15,6 @@
 void point_array_init( point_array_t* pa ){
     pa->size = 0;
     pa->numOfPts = 0;
-    pa->points = realloc(pa->points, sizeof(point_t));
 }
 
 // Resets the array to be empty, freeing any memory allocated if necessary.
@@ -43,13 +42,13 @@ int point_array_append( point_array_t* pa, point_t* p ){
         return 1;
     }
     if(pa->size == 0){ //if the array is empty
-        pa->size = 1;
+        pa->size = pa->size+1;
         pa->points = realloc(pa->points, sizeof(point_t)*pa->size*2);
         pa->numOfPts = 2; //double length by 2 
         //implement fields of p into last index
-        pa->points[pa->size].x = p->x;
-        pa->points[pa->size].y = p->y;
-        pa->points[pa->size].z = p->z;
+        pa->points[pa->size-1].x = p->x;
+        pa->points[pa->size-1].y = p->y;
+        pa->points[pa->size-1].z = p->z;
     } 
 
     else{ //if not empty (basically if it has any size other than 0)
@@ -74,7 +73,7 @@ int point_array_append( point_array_t* pa, point_t* p ){
 // stored in the array by one. The order of points in the array may change.
 // If successful, return 0, else return 1. 
 int point_array_remove( point_array_t* pa, unsigned int i ){
-    if(i >= pa->size || pa->size = 0){
+    if(i >= pa->size || pa->size == 0){
         return 1;
     }
     //switch desired element with last element, and get rid of last element

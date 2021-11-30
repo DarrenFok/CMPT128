@@ -24,7 +24,7 @@ void stars( unsigned int current, unsigned int max ) {
         
         stars(current+1, max);
         
-        for(unsigned int j = 1; j <= current; j++){
+        for(int j = 1; j <= current; j++){
             printf("*");
         }
         printf("\n");
