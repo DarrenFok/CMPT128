@@ -1,3 +1,13 @@
+/* 
+ * Filename: point_array_2.c
+ *
+ * Description: Functions that do operations on linked lists
+ *
+ * Completed by: Darren Fok and Anushka Kulasekara
+ * Date: November 24th, 2021
+ *
+ */
+
 #include <stdio.h>
 #include "point_array.h"
 
